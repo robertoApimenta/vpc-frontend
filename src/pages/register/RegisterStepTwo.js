@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { styled } from "@mui/system";
-
 import { useTheme } from "@mui/material/styles";
-
-import api from '../../config/axiosConfig';
-
 import {
     Alert,
     Container,
@@ -25,17 +19,22 @@ import {
     LinearProgress,
 } from "@mui/material";
 
+import api from '../../config/axiosConfig';
+import logo from "../../assets/logo-register.png";
+
 const RegisterStepTwo = () => {
     const theme = useTheme();
+    const navigate = useNavigate();
+
     const [fullName, setFullName] = useState("");
     const [fullNameError, setFullNameError] = useState(false);
-    const [cpf, setCpf] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [emailError, setEmailError] = React.useState(false);
-    const [password, setPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] = React.useState("");
-    const [passwordError, setPasswordError] = React.useState(false);
-    const [check, setCheck] = React.useState(false);
+    const [cpf, setCpf] = useState("");
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState(false);
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [passwordError, setPasswordError] = useState(false);
+    const [check, setCheck] = useState(false);
 
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -43,12 +42,11 @@ const RegisterStepTwo = () => {
 
     const [successMessage, setSuccessMessage] = useState(null);
     const [progress, setProgress] = useState(0);
-    const navigate = useNavigate();
+
 
     const insurance = localStorage.getItem('selectedPlan');
 
     useEffect(() => {
-
         if (fullName && fullName.length <= 10) {
             setFullNameError(true);
         } else {
@@ -64,8 +62,12 @@ const RegisterStepTwo = () => {
             confirmPassword &&
             !passwordError &&
             check
-        )
+        ) {
             setIsFormValid(true);
+        } else {
+            setIsFormValid(false);
+        }
+
     }, [
         navigate,
         fullName,
@@ -136,22 +138,20 @@ const RegisterStepTwo = () => {
         setCheck(!check);
     };
 
-    console.log(insurance)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isFormValid) {
             return;
         }
         const cleanedCpf = cpf.replace(/[.-]/g, "");
-        console.log(insurance)
+
         try {
             await api.post('/users', {
                 fullName,
-                cpf,
+                cpf: cleanedCpf,
                 email,
                 password,
-                insurance
+                insurance: Number(insurance)
             });
             setSuccessMessage(
                 "Cadastro realizado com sucesso, você será redirecionado para o login!"
@@ -199,7 +199,17 @@ const RegisterStepTwo = () => {
                     width: "100%",
                 }}
             >
-                <Divider sx={{ width: "100%", mb: theme.spacing(2) }} />
+                <Box
+                    component="img"
+                    src={logo}
+                    alt="Logo"
+                    sx={{
+                        width: 100,
+                        height: 100,
+                        mb: 2,
+                        borderRadius: '50%', // Torna a imagem redonda
+                    }}
+                />
                 <Typography component="h1" variant="h5" align="center">
                     Register
                 </Typography>

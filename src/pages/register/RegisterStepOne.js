@@ -1,114 +1,153 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
-import Slider from 'react-slick';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { useTheme } from "@mui/material/styles";
+
+import {
+    Alert,
+    Container,
+    TextField,
+    Button,
+    Link as MuiLink,
+    Typography,
+    Box,
+    CssBaseline,
+    Grid,
+    Paper,
+    Divider,
+    FormHelperText,
+    Checkbox,
+    Snackbar,
+    LinearProgress,
+} from "@mui/material";
+
+import logo from "../../assets/logo-register.png";
 
 const RegisterStepOne = () => {
-    const [selectedPlan, setSelectedPlan] = useState(null);
     const navigate = useNavigate();
+    const theme = useTheme();
 
     const handleSelectPlan = (plan) => {
-        setSelectedPlan(plan);
-    };
-
-    const handleProceed = () => {
-        if (selectedPlan) {
-            localStorage.setItem('selectedPlan', selectedPlan);
-            navigate('/register-step-two');
-        } else {
-            alert("Please select a plan.");
-        }
-    };
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        centerPadding: '20px',
+        localStorage.setItem('selectedPlan', plan);
+        navigate('/register-step-two');
     };
 
     return (
-        <Container maxWidth="md">
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
-                <Typography variant="h4" component="h2" gutterBottom>
-                    Choose a Plan
-                </Typography>
-                <Slider {...settings} style={{ width: '100%' }}>
-                    <Card
+        <Container
+            component="main"
+            maxWidth="xs"
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+            }}
+        >
+            <CssBaseline />
+            <Paper
+                elevation={3}
+                sx={{
+                    p: 4,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    maxWidth: "400px",
+                    width: "100%",
+                }}
+            >
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
+
+                    <Box
+                        component="img"
+                        src={logo}
+                        alt="Logo"
                         sx={{
-                            maxWidth: 345,
-                            margin: 2,
-                            cursor: 'pointer',
-                            backgroundColor: selectedPlan === 12 ? '#f0f0f0' : 'white'
+                            width: 100,
+                            height: 100,
+                            mb: 2,
+                            borderRadius: '50%', // Torna a imagem redonda
                         }}
-                        onClick={() => handleSelectPlan(12)}
-                    >
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Plano Bronze
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Description for Plano Bronze.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                    <Card
-                        sx={{
-                            maxWidth: 345,
-                            margin: 2,
-                            cursor: 'pointer',
-                            backgroundColor: selectedPlan === 24 ? '#f0f0f0' : 'white'
-                        }}
-                        onClick={() => handleSelectPlan(24)}
-                    >
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Plano Prata
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Description for Plano Prata.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                    <Card
-                        sx={{
-                            maxWidth: 345,
-                            margin: 2,
-                            cursor: 'pointer',
-                            backgroundColor: selectedPlan === 36 ? '#f0f0f0' : 'white'
-                        }}
-                        onClick={() => handleSelectPlan(36)}
-                    >
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Plano Ouro
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Description for Plano Ouro.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Slider>
-                <CardActions>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleProceed}
-                        sx={{ mt: 2 }}
-                    >
-                        Next
-                    </Button>
-                </CardActions>
-            </Box>
+                    />
+
+                    <Typography component="h1" variant="h5" align="center">
+                        Selecione seu plano
+                    </Typography>
+                    <Box sx={{ width: '100%', mt: 2 }}>
+                        <Card
+                            sx={{
+                                width: 300,
+                                height: 300,
+                                margin: 2,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '1px solid #ccc'
+                            }}
+                        >
+                            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <WorkspacePremiumIcon sx={{ fontSize: 60, color: '#cd7f32' }} /> {/* Medalha de ouro */}
+                                <Typography variant="h6" component="div" sx={{ mt: 2 }}>
+                                    Bronze
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Plano de 12 meses
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={() => handleSelectPlan(12)}
+                                >
+                                    Assine o plano bronze
+                                </Button>
+                            </CardActions>
+                        </Card>
+
+                        <Card
+                            sx={{
+                                width: 300,
+                                height: 300,
+                                margin: 2,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: '#f0f0f0',
+                                border: '2px solid #f0f0f0'
+                            }}
+                        >
+                            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <WorkspacePremiumIcon sx={{ fontSize: 60, color: '#c0c0c0' }} /> {/* Medalha de ouro */}
+                                <Typography variant="h6" component="div" sx={{ mt: 2 }}>
+                                    Prata
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Plano de 24 meses
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => handleSelectPlan(24)}
+                                >
+                                    Assine o plano prata
+                                </Button>
+                            </CardActions>
+                        </Card>
+
+
+                    </Box>
+                </Box>
+            </Paper>
         </Container>
     );
 };
