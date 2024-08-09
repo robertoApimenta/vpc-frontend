@@ -161,14 +161,14 @@ const RegisterStepTwo = () => {
                 setProgress((prevProgress) => {
                     if (prevProgress >= 100) {
                         clearInterval(interval);
-                        navigate("https://link-to.app/vai-pra-conta");
+                        window.location.href = "https://link-to.app/vai-pra-conta";
                     }
                     return prevProgress + 1;
                 });
             }, 30); // Adjust the duration to match 3 seconds (100 / 30ms = ~3 seconds)
         } catch (error) {
-            if (error.message) {
-                setErrorMessage(error.message);
+            if (error) {
+                setErrorMessage(error.response.data.message);
             } else {
                 setErrorMessage("Failed to register user");
             }
