@@ -161,7 +161,7 @@ const RegisterStepTwo = () => {
                 setProgress((prevProgress) => {
                     if (prevProgress >= 100) {
                         clearInterval(interval);
-                        navigate("/login");
+                        navigate("https://link-to.app/vai-pra-conta");
                     }
                     return prevProgress + 1;
                 });
