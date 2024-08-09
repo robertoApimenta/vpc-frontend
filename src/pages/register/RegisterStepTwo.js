@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 
 import api from '../../config/axiosConfig';
-import logo from "../../assets/logo-register.png";
+import logo from "../../assets/logo-new.png";
 
 const RegisterStepTwo = () => {
     const theme = useTheme();
@@ -199,151 +199,160 @@ const RegisterStepTwo = () => {
                     width: "100%",
                 }}
             >
-                <Box
-                    component="img"
-                    src={logo}
-                    alt="Logo"
-                    sx={{
-                        width: 100,
-                        height: 100,
-                        mb: 2,
-                        borderRadius: '50%', // Torna a imagem redonda
-                    }}
-                />
-                <Typography component="h1" variant="h5" align="center">
-                    Register
-                </Typography>
-                <Box
-                    component="form"
-                    onSubmit={handleSubmit}
-                    noValidate
-                    sx={{
-                        mt: 3,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        maxWidth: "400px",
-                        width: "100%",
-                    }}
-                >
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="fullName"
-                        label="Nome completo"
-                        name="fullName"
-                        autoComplete="name"
-                        autoFocus
-                        value={fullName}
-                        onChange={handleFullNameChange}
-                        error={fullNameError}
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
+                    <Box
+                        component="img"
+                        src={logo}
+                        alt="Logo"
+                        sx={{
+                            width: 100,
+                            height: 100,
+                            mb: 2,
+                            borderRadius: '50%', // Torna a imagem redonda
+                        }}
                     />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="cpf"
-                        label="CPF"
-                        name="cpf"
-                        autoComplete="cpf"
-                        value={cpf}
-                        onChange={handleCpfChange}
-                        inputProps={{ maxLength: 14 }}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email"
-                        name="email"
-                        autoComplete="email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        error={emailError}
-                    />
-                    {/* {emailError && <FormHelperText error>Email inválido</FormHelperText>} */}
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        name="password"
-                        type="password"
-                        autoComplete="new-password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        error={passwordError}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="confirmPassword"
-                        label="Repita o Password"
-                        name="confirmPassword"
-                        type="password"
-                        autoComplete="new-password"
-                        value={confirmPassword}
-                        onChange={handleConfirmPasswordChange}
-                        error={passwordError}
-                    />
-                    {/* {passwordError && (
+                    <Typography component="h1" variant="h5" align="center">
+                        Register
+                    </Typography>
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit}
+                        noValidate
+                        sx={{
+                            mt: 3,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            maxWidth: "400px",
+                            width: "100%",
+                        }}
+                    >
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="fullName"
+                            label="Nome completo"
+                            name="fullName"
+                            autoComplete="name"
+                            autoFocus
+                            value={fullName}
+                            onChange={handleFullNameChange}
+                            error={fullNameError}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="cpf"
+                            label="CPF"
+                            name="cpf"
+                            autoComplete="cpf"
+                            value={cpf}
+                            onChange={handleCpfChange}
+                            inputProps={{ maxLength: 14 }}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email"
+                            name="email"
+                            autoComplete="email"
+                            value={email}
+                            onChange={handleEmailChange}
+                            error={emailError}
+                        />
+                        {/* {emailError && <FormHelperText error>Email inválido</FormHelperText>} */}
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="password"
+                            label="Password"
+                            name="password"
+                            type="password"
+                            autoComplete="new-password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            error={passwordError}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="confirmPassword"
+                            label="Repita o Password"
+                            name="confirmPassword"
+                            type="password"
+                            autoComplete="new-password"
+                            value={confirmPassword}
+                            onChange={handleConfirmPasswordChange}
+                            error={passwordError}
+                        />
+                        {/* {passwordError && (
             <FormHelperText error>As senhas não coincidem</FormHelperText>
           )} */}
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Checkbox
-                            sx={{ mr: 1 }} // Adiciona margem à direita para separar o Checkbox do texto
-                            onChange={handleCheckChange}
-                        />
-                        <Typography variant="body2">
-                            {"Concordo com os "}
-                            <MuiLink
-                                component="button"
-                                variant="body2"
-                                onClick={() => navigate("/register")}
-                                sx={{
-                                    textDecoration: "none",
-                                    color: "primary.main",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                Termos e Condições.
-                            </MuiLink>
-                        </Typography>
-                    </Box>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                            <Checkbox
+                                sx={{ mr: 1 }} // Adiciona margem à direita para separar o Checkbox do texto
+                                onChange={handleCheckChange}
+                            />
+                            <Typography variant="body2">
+                                {"Concordo com os "}
+                                <MuiLink
+                                    component="button"
+                                    variant="body2"
+                                    onClick={() => navigate("/register")}
+                                    sx={{
+                                        textDecoration: "none",
+                                        color: "primary.main",
+                                        fontWeight: "bold",
+                                    }}
+                                >
+                                    Termos e Condições.
+                                </MuiLink>
+                            </Typography>
+                        </Box>
 
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2, backgroundColor: theme.palette.primary.main }}
-                        disabled={!isFormValid}
-                    >
-                        Registrar
-                    </Button>
-                    {errorMessage && (
-                        <Typography color="error" align="center" sx={{ mt: 2 }}>
-                            {errorMessage}
-                        </Typography>
-                    )}
-                    <Snackbar
-                        open={Boolean(successMessage)}
-                        onClose={() => setSuccessMessage(null)}
-                    >
-                        <Alert
-                            onClose={() => setSuccessMessage(null)}
-                            severity="success"
-                            sx={{ width: "100%" }}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                mt: 3,
+                                mb: 2,
+                                backgroundColor: '#FF4500',
+                                '&:hover': {
+                                    backgroundColor: '#E67E22',
+                                }
+                            }}
+                            disabled={!isFormValid}
                         >
-                            {successMessage}
-                            <Box sx={{ width: "100%", mt: 1 }}>
-                                <LinearProgress variant="determinate" value={progress} />
-                            </Box>
-                        </Alert>
-                    </Snackbar>
+                            Registrar
+                        </Button>
+                        {errorMessage && (
+                            <Typography color="error" align="center" sx={{ mt: 2 }}>
+                                {errorMessage}
+                            </Typography>
+                        )}
+                        <Snackbar
+                            open={Boolean(successMessage)}
+                            onClose={() => setSuccessMessage(null)}
+                        >
+                            <Alert
+                                onClose={() => setSuccessMessage(null)}
+                                severity="success"
+                                sx={{ width: "100%" }}
+                            >
+                                {successMessage}
+                                <Box sx={{ width: "100%", mt: 1 }}>
+                                    <LinearProgress variant="determinate" value={progress} />
+                                </Box>
+                            </Alert>
+                        </Snackbar>
+                    </Box>
                 </Box>
             </Paper>
         </Container>
