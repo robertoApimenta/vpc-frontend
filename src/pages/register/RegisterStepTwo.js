@@ -167,6 +167,7 @@ const RegisterStepTwo = () => {
                 });
             }, 30); // Adjust the duration to match 3 seconds (100 / 30ms = ~3 seconds)
         } catch (error) {
+            console.log(error)
             if (error) {
                 setErrorMessage(error.response.data.message);
             } else {
